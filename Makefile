@@ -4,7 +4,7 @@ BIN_DIR=${PWD}/bin
 O_DIR=${BIN_DIR}
 
 CFLAGS=-O2 
-LDFLAGS=-lm -lpthread -ltensorflow -L${BIN_DIR} -lutils
+LDFLAGS=-lm -lpthread -ltensorflow -L${BIN_DIR} -lutils -lm
 
 main: mkdir ${BIN_DIR}/fantastic-filter-cli
 
