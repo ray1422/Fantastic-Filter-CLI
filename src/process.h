@@ -1,6 +1,6 @@
 #ifndef PROCESS_H
 #define PROCESS_H
-#include <bits/types/error_t.h>
+#define error_t int
 #include <stdint.h>
 
 typedef enum process_stat {

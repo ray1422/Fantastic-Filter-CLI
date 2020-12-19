@@ -6,7 +6,7 @@ O_DIR=${BIN_DIR}
 CFLAGS=-O2 
 LDFLAGS=-lm -lpthread -ltensorflow -L${BIN_DIR} -lutils
 
-main: ${BIN_DIR}/fantastic-filter-cli
+main: mkdir ${BIN_DIR}/fantastic-filter-cli
 
 dev: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined -fsanitize=leak -fsanitize=address
 dev: LDFLAGS:=$(LDFLAGS) -lubsan

@@ -94,7 +94,7 @@ Args *args_init(int argc, char *argv[]) {
         {"quiet", 'q', 0, 0, "Don't produce any output."},
         {"silent", 's', 0, OPTION_ALIAS},
         {"verbose", 'v', 0, 0, "Show verbose"},
-        {"benchmark", 'b', "LEVEL", optional_argument, "Run Fantastic Filter Benchmark"},
+        {"benchmark", 'b', "LEVEL", OPTION_ARG_OPTIONAL, "Run Fantastic Filter Benchmark"},
 
         {0},  // input_files
     };
