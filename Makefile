@@ -1,4 +1,4 @@
-CC=clang
+CC=gcc
 
 BIN_DIR=${PWD}/bin
 O_DIR=${BIN_DIR}
