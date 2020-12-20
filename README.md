@@ -1,5 +1,5 @@
 # Fantastic Filter CLI
-A CLI tool for [Fantastic Filter](https://ray-fish.me/Fantastic-Filter-Professional-Plus).
+A CLI tool for [Fantastic Filter](https://ray-fish.me/Fantastic-Filter-Professional-Plus) written in C.
 
 ## Usage
 Enter `fantastic-Filter-cli --help` for helps.
