@@ -42,8 +42,8 @@ void _vector_clear(Vector *v, void (*item_rm)(void *item)) {
             item_rm(_vector_get(v, i));
         }
     }
-    free(v->nodes);
-    v->nodes = malloc(sizeof(v->base));
+    v->size = 0;
+    bzero(v->nodes, v->size*v->base);
 }
 
 void _vector_destory(Vector *v, void (*item_rm)(void *item)) {
