@@ -35,6 +35,7 @@ Download FF_Model.zip from releases, extract, and set enviorment variable `FF_MO
 Docker with GPUs is not working now somehow, PR will be very welcome if someone can figure out how to build docker of [Tensorflow for C](https://www.tensorflow.org/install/lang_c), but you can still run it without GPU support.
 
 The basic idea is mount the directory that where the image you want to process to docker.
+
 Here's an example:
 ```bash
 docker run -v <dir_on_host>:/myDir -it <image_name> fantastic-filter-cli tmp -o /myDir <filename>
