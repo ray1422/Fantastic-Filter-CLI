@@ -21,6 +21,11 @@ static void _args_init() {
     args->max_height = 0;
 }
 
+/* 
+ *  @param key
+ *  @param argv
+ *  #param state
+ */
 static error_t parse_opt(int key, char *argv, struct argp_state *state) {
     struct args *args = state->input;
     switch (key) {
