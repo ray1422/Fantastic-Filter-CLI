@@ -57,6 +57,7 @@ static error_t parse_opt(int key, char *argv, struct argp_state *state) {
         case 'b':
             args->benchmark = 1;
             if (argv != NULL) {
+                if (*argv == '=') argv += 1;
                 args->benchmark_level = atoi(argv);
             }
         case ARGP_KEY_ARG:
@@ -100,7 +101,7 @@ Args *args_init(int argc, char *argv[]) {
     };
     static struct argp argp = {options, parse_opt, "[input_files]", doc};
 
-    _args_init(&FF_arg);
+    _args_init();
     argp_parse(&argp, argc, argv, 0, 0, &FF_arg);
     // for (int i = 0; i < args.input_files.size; i++) {
     //     puts(vector_get(args.input_files, i, char *));

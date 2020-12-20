@@ -1,4 +1,4 @@
-CC=gcc
+CC=clang
 
 BIN_DIR=${PWD}/bin
 O_DIR=${BIN_DIR}
@@ -8,7 +8,7 @@ LDFLAGS=-lm -lpthread -ltensorflow -L${BIN_DIR} -lutils -lm
 
 main: mkdir ${BIN_DIR}/fantastic-filter-cli
 
-dev: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined -fsanitize=leak -fsanitize=address
+dev: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined -fsanitize=leak
 dev: LDFLAGS:=$(LDFLAGS) -lubsan
 dev: ${BIN_DIR}/debug
 
@@ -39,7 +39,7 @@ utils: ${BIN_DIR}/libutils.a
 
 ${O_DIR}/utils/%.o: src/utils/%.c
 	mkdir -p ${O_DIR}/utils
-	$(CC) -c -o $@ $< ${DEBUG_FLAGS}
+	$(CC) -c -o $@ $< ${CFLAGS}
 
 
 ${BIN_DIR}/libutils.a: ${O_DIR}/utils/vector.o ${O_DIR}/utils/jpg_info.o ${O_DIR}/utils/color.o

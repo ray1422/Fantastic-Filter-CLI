@@ -83,8 +83,9 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
     const int n_dims = 3;
     const int n_data = width * height * 3 * sizeof(uint8_t);
     if (ff == NULL) return 1;
-    if (ff->width != width || ff->height != height || ff->inputs_values[0] == NULL) {
+    if ((ff->width != width || ff->height != height) || ff->inputs_values[0] == NULL) {
         if (ff->inputs_values[0] != NULL) {
+            printif(FF_arg.verbose, "DEL Tensor\n");
             TF_DeleteTensor(ff->inputs_values[0]);
         }
         ff->inputs_values[0] = TF_NewTensor(
@@ -92,6 +93,8 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
         if (ff->inputs_values[0] != NULL) {
             // TODO debug print
             printif(FF_arg.verbose, OK "TF_NewTensor is OK\n");
+            ff->width = width;
+            ff->height = height;
         } else {
             printif(FF_arg.verbose, ERR "Failed TF_NewTensor\n");
             return 1;
@@ -105,7 +108,7 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
     if (TF_GetCode(ff->status) == TF_OK) {
         printif(FF_arg.verbose, OK "Session is OK\n");
     } else {
-        printif(FF_arg.verbose, ERR "%s", TF_Message(ff->status));
+        printif(FF_arg.verbose, ERR "%s\n", TF_Message(ff->status));
     }
 
     void* buf = TF_TensorData(ff->outputs_values[0]);

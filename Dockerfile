@@ -13,6 +13,6 @@ RUN make main
 RUN ldconfig
 RUN ln -s ./bin/fantastic-filter-cli /bin/fantastic-filter-cli
 RUN ln -s /bin/fantastic-filter-cli /bin/ff-cli
-RUN wget -O FF_Model.tar.gz https://github.com/ray1422/Fantastic-Filter-Professional-Plus/releases/download/v0.0.1/FF_Model.tar.gz
+RUN wget -O FF_Model.tar.gz https://github.com/ray1422/Fantastic-Filter-Professional-Plus/releases/download/v0.0.1/FF_Model.tar.gz -q
 RUN tar -xvf FF_Model.tar.gz
 
