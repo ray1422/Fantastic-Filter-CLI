@@ -7,7 +7,7 @@ RUN apt update && \
     apt install -y gcc wget git make
 RUN rm ./* -rf && \
     git clone https://github.com/ray1422/Fantastic-Filter-CLI.git ./ && \
-    RUN git checkout master
+    git checkout master
 RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-2.3.0.tar.gz -O tf.tar.gz -q && \
     tar -C /usr/local -xzf tf.tar.gz && \
     ldconfig
