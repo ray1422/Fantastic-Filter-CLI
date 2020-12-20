@@ -10,8 +10,9 @@ RUN git checkout master
 RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-2.3.0.tar.gz -O tf.tar.gz -q
 RUN tar -C /usr/local -xzf tf.tar.gz
 RUN make main
+RUN ldconfig
 RUN ln -s ./bin/fantastic-filter-cli /bin/fantastic-filter-cli
 RUN ln -s /bin/fantastic-filter-cli /bin/ff-cli
-RUN wget -O FF_Model.tar.gz https://github.com/ray1422/Fantastic-Filter-Professional-Plus/releases/download/v0.0.1/FF_Model.tar.gz\
-    tar -xvf FF_Model.tar.gz
+RUN wget -O FF_Model.tar.gz https://github.com/ray1422/Fantastic-Filter-Professional-Plus/releases/download/v0.0.1/FF_Model.tar.gz
+RUN tar -xvf FF_Model.tar.gz
 
