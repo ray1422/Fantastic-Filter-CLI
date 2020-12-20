@@ -3,7 +3,7 @@ WORKDIR /fantastic-filter-cli
 ENV TF_CPP_MIN_LOG_LEVEL 3
 ENV FF_MODEL_PATH /fantastic-filter-cli/FF_Model
 
-RUN apt-get update && apt-get install -y gcc wget git make -no-install-recommends && \
+RUN apt-get update && apt-get install -y gcc wget git make --no-install-recommends && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
