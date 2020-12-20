@@ -1,4 +1,5 @@
 # Fantastic Filter CLI
+[![Build Status](https://travis-ci.com/ray1422/Fantastic-Filter-CLI.svg?branch=master)](https://travis-ci.com/ray1422/Fantastic-Filter-CLI)
 A CLI tool for [Fantastic Filter](https://ray-fish.me/Fantastic-Filter-Professional-Plus) written in C.
 
 ## Usage
