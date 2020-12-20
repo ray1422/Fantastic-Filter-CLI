@@ -3,8 +3,8 @@ WORKDIR /fantastic-filter-cli
 ENV TF_CPP_MIN_LOG_LEVEL 3
 ENV FF_MODEL_PATH /fantastic-filter-cli/FF_Model
 
-RUN apt update && \
-    apt install -y gcc wget git make
+RUN apt-get update && \
+    apt-get install -y gcc wget git make
 RUN rm ./* -rf && \
     git clone https://github.com/ray1422/Fantastic-Filter-CLI.git ./ && \
     git checkout master
