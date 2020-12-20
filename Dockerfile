@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-runtime-ubuntu16.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu16.04
 WORKDIR /fantastic-filter-cli
 ENV TF_CPP_MIN_LOG_LEVEL 3
 ENV FF_MODEL_PATH /fantastic-filter-cli/FF_Model
@@ -8,6 +8,7 @@ RUN apt update && \
 RUN rm ./* -rf && \
     git clone https://github.com/ray1422/Fantastic-Filter-CLI.git ./ && \
     git checkout master
+
 RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-2.3.0.tar.gz -O tf.tar.gz -q && \
     tar -C /usr/local -xzf tf.tar.gz && \
     ldconfig

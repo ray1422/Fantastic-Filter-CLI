@@ -105,6 +105,7 @@ static void *progressbar(void *_stat) {
 int benchmark(int level) {
     const double K = 80.0;
     const int N = 95;
+    int failed = 0;
     // init test image.
     // test once but don't calc first time costs.
     // run N times.
@@ -118,6 +119,7 @@ int benchmark(int level) {
         msg.done = 1;
         pthread_join(tid, NULL);
         puts("\n" C_BRED "Failed!" C_RESET " error occurred. Is " C_BWHT "FF_MODEL_PATH" C_RESET " set correctly?");
+        failed = 1;
     }
     uint8_t *result = NULL;
     int _unused;
@@ -138,7 +140,10 @@ int benchmark(int level) {
     gettimeofday(&te, NULL);
     // await UI thread
     pthread_join(tid, NULL);
-    // TODO Calcute score.
+    // Calcute score.
+    if (failed) {
+        return 1;
+    }
     double time_in_mill = (te.tv_sec - ts.tv_sec) * 1000 + (double)(te.tv_usec - ts.tv_usec) / 1000;
     puts("");
     double score = K / time_in_mill * LEVELS[level][0] * LEVELS[level][1];
