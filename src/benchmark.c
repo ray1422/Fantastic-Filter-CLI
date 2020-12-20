@@ -12,6 +12,7 @@
 #include "args.h"
 #include "utils/color.h"
 
+// benchmark resolution level
 const int LEVELS[][3] = {
     {128, 128, 3},
     {1280, 768, 3},
@@ -25,7 +26,9 @@ uint8_t data[4000 * 4000 * 3];
 typedef struct _msg {
     int total;
     int n_processed;
+    // benchmark done singal
     volatile int done;
+    // await ascii-art
     pthread_mutex_t lock;
 } Msg;
 
@@ -36,21 +39,21 @@ static void *progressbar(void *_stat) {
 
     struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-    if (getenv("I_DONT_WANNA_SEE_ASCIIART")) goto SKIP_ASCIIART;
-    if (w.ws_col <= 120) {
-        puts(C_RED "Your terminal size is too small, please resize your terminal or set enviorment variable I_DONT_WANNA_SEE_ASCIIART\n\n" C_RESET);
+    if (!getenv("I_DONT_WANNA_SEE_ASCIIART")) {
+        if (w.ws_col <= 120) {
+            puts(C_RED "Your terminal size is too small, please resize your terminal or set enviorment variable I_DONT_WANNA_SEE_ASCIIART\n\n" C_RESET);
+        }
+        // print logo
+        int last_win_size = w.ws_col;
+        while (w.ws_col <= 120 && last_win_size == w.ws_col) {
+            ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+            sleep(1);
+            last_win_size = w.ws_col;
+        }
+        if (w.ws_col > 120) {  // screen width
+            puts(ASCIIART_LOGO);
+        }
     }
-    // print logo
-    int last_win_size = w.ws_col;
-    while (w.ws_col <= 120 && last_win_size == w.ws_col) {
-        ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-        sleep(1);
-        last_win_size = w.ws_col;
-    }
-    if (w.ws_col > 120) {  // screen width
-        puts(ASCIIART_LOGO);
-    }
-SKIP_ASCIIART:;
     const int delay_ms = 1000 / 24;
     unsigned int idc_idx = 0;
     Msg *msg = (Msg *)_stat;
@@ -108,6 +111,7 @@ int benchmark(int level) {
     Msg msg = {N, 0, 0, PTHREAD_MUTEX_INITIALIZER};
     pthread_t tid;
     pthread_mutex_lock(&msg.lock);
+    // boostrap UI thread
     pthread_create(&tid, NULL, progressbar, &msg);
     FF *ff = FF_get_instance();
     if (ff == NULL) {
@@ -118,9 +122,8 @@ int benchmark(int level) {
     uint8_t *result = NULL;
     int _unused;
     FF_enhance(ff, data, LEVELS[level][1], LEVELS[level][0], &result, &_unused, &_unused);
-
+    // await for ascii-arts to print
     pthread_mutex_lock(&msg.lock);
-    pthread_mutex_unlock(&msg.lock);
     pthread_mutex_destroy(&msg.lock);
     struct timeval ts, te;
     gettimeofday(&ts, NULL);
@@ -133,12 +136,12 @@ int benchmark(int level) {
     }
     msg.done = 1;
     gettimeofday(&te, NULL);
+    // await UI thread
     pthread_join(tid, NULL);
     // TODO Calcute score.
     double time_in_mill = (te.tv_sec - ts.tv_sec) * 1000 + (double)(te.tv_usec - ts.tv_usec) / 1000;
     puts("");
     double score = K / time_in_mill * LEVELS[level][0] * LEVELS[level][1];
-    // printf("time_in_mill: %lf\n", time_in_mill);
     printf("Your score:\t" C_GRN "%.2lf" C_RESET " pts (level %d)\n", score, level);
     return -1;
 }
