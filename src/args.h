@@ -10,8 +10,8 @@ typedef struct args {
     unsigned int max_height, max_width;
     int benchmark;  // -b
     int benchmark_level;  // -b
-
 } Args;
+
 extern Args FF_arg;
 Args *args_init(int argc, char *argv[]);
 void args_free(Args *args);
