@@ -8,7 +8,7 @@ Enter `fantastic-Filter-cli --help` for helps.
 ```bash
 fantastic-Filter-cli -b[=LEVEL] # where LEVEL is 0-4
 ```
-note: Level 0 is for testing, which might be TOO stressless for GPU, but enough for CPU.
+Note: Level 0 is for testing, which might be TOO stressless for GPU, but enough for CPU.
 
 #### Process An Image
 ```bash
