@@ -11,6 +11,7 @@ typedef struct FF {
     TF_Output outputs[1];
     TF_Tensor* inputs_values[1];
     TF_Tensor* outputs_values[1];
+    TF_Buffer *run_opts;
     int height;
     int width;
 } FF;

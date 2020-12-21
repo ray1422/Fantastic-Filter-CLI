@@ -17,5 +17,6 @@ int main() {
     }
     // summary
     fprintf(stderr, C_BWHT "%d" C_RESET " " C_BGRN "PASSED" C_RESET ", " C_BWHT "%d" C_RESET " " C_BRED "FAILED" C_RESET ".\n", test_n_passed, test_n_failed);
+    vector_destory(tests, NULL);
     return test_n_failed > 0;
 }

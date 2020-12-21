@@ -30,7 +30,8 @@ FF* FF_init(const char* saved_model_dir) {
     ff->graph = TF_NewGraph();
     ff->status = TF_NewStatus();
     ff->sess_opts = TF_NewSessionOptions();
-    TF_Buffer* run_opts = NULL;
+    ff->run_opts = NULL;
+    // TF_Buffer* run_opts = NULL;
 
     // const char* saved_model_dir = "lstm2/";
     const char* tags = "serve";
@@ -39,7 +40,7 @@ FF* FF_init(const char* saved_model_dir) {
     int ntags = 1;
 
     ff->session =
-        TF_LoadSessionFromSavedModel(ff->sess_opts, run_opts, saved_model_dir,
+        TF_LoadSessionFromSavedModel(ff->sess_opts, ff->run_opts, saved_model_dir,
                                      &tags, ntags, ff->graph, NULL, ff->status);
     if (TF_GetCode(ff->status) == TF_OK) {
         // TODO print debug
@@ -127,6 +128,7 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
 }
 void FF_close_instance() {
     if (FF_instance != NULL) FF_destory(FF_instance);
+    FF_instance = NULL;
 }
 void FF_destory(FF* ff) {
     if (ff == NULL) return;
@@ -145,5 +147,6 @@ void FF_destory(FF* ff) {
         TF_DeleteTensor(ff->inputs_values[0]);
     if (ff->outputs_values[0] != NULL)
         TF_DeleteTensor(ff->outputs_values[0]);
+    if (ff->run_opts != NULL) TF_DeleteBuffer(ff->run_opts);
     free(ff);
 }
