@@ -1,6 +1,6 @@
 language: C
 compiler: gcc
-script: make && make clean && make dev && make test
+script: make && make test
 before_install:
   - wget https://storage.googleapis.com/tensorflow-nightly/github/tensorflow/lib_package/libtensorflow-cpu-linux-x86_64.tar.gz -O libtf.tar.gz
   - sudo tar -C /usr/local -xzf libtf.tar.gz
