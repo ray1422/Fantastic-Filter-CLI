@@ -3,7 +3,7 @@ CC?=gcc
 BIN_DIR=${PWD}/bin
 O_DIR=${BIN_DIR}
 
-CFLAGS=-O2 
+CFLAGS=-O2 -std=gnu11
 LDFLAGS=-lm -lpthread -ltensorflow -L${BIN_DIR} -lutils -lm
 
 .PHONY: default

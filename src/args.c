@@ -85,7 +85,11 @@ static error_t parse_opt(int key, char *argv, struct argp_state *state) {
     return 0;
 }
 
-const char *argp_program_version = "Fantastilc-Filter-CLI 0.0.1-alpha";
+const char *argp_program_version =
+    "Fantastilc-Filter-CLI 0.0.1-alpha\n"
+    "Copyright (C) 2020 Ray Chung\n"
+    "This is free software. "
+    "There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.";
 const char *argp_program_bug_address = "<ray1422@csie.io>";
 
 Args *args_init(int argc, char *argv[]) {
