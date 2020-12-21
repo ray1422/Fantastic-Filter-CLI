@@ -52,7 +52,8 @@ void _vector_destory(Vector *v, void (*item_rm)(void *item)) {
             item_rm(_vector_get(v, i));
         }
     }
-    free(v->nodes);
+    if (v->nodes != NULL)
+        free(v->nodes);
 }
 
 void _vector_sort(Vector *v, int (*cmp)(const void *a, const void *b)) {
