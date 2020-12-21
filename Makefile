@@ -6,11 +6,21 @@ O_DIR=${BIN_DIR}
 CFLAGS=-O2 
 LDFLAGS=-lm -lpthread -ltensorflow -L${BIN_DIR} -lutils -lm
 
+.PHONY: default
+default: main
+
 main: mkdir ${BIN_DIR}/fantastic-filter-cli
 
 dev: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined -fsanitize=leak
 dev: LDFLAGS:=$(LDFLAGS) -lubsan
 dev: ${BIN_DIR}/debug
+
+test: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined -fsanitize=leak
+test: LDFLAGS:=$(LDFLAGS) -lubsan
+test: ${BIN_DIR}/test
+	${BIN_DIR}/test
+${BIN_DIR}/test: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c src/process.h test/*.c
+	${CC} test/*.c src/benchmark.c src/process.c ${BIN_DIR}/FF.o ${BIN_DIR}/args.o  -o ${BIN_DIR}/test  ${CFLAGS} ${LDFLAGS}
 
 ${BIN_DIR}/fantastic-filter-cli: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c src/process.h src/benchmark.c src/benchmark.h
 	${CC} src/main.c src/benchmark.c src/process.c ${BIN_DIR}/FF.o ${BIN_DIR}/args.o  -o ${BIN_DIR}/fantastic-filter-cli  ${CFLAGS} ${LDFLAGS}

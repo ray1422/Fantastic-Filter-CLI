@@ -10,17 +10,17 @@
 #define ERR C_RED "ER " C_RESET
 #define OK C_GRN "OK " C_RESET
 void _FF_no_op_deallocator(void* data, size_t a, void* b) {}
-FF* instance = NULL;
+FF* FF_instance = NULL;
 
 FF* FF_get_instance() {
-    if (instance != NULL) return instance;
+    if (FF_instance != NULL) return FF_instance;
     char* model_path = getenv("FF_MODEL_PATH");
     if (model_path == NULL) {
         printif(FF_arg.verbose, "model path not set! Use default value\n");
         model_path = "FF_Model";
     }
-    instance = FF_init(model_path);
-    return instance;
+    FF_instance = FF_init(model_path);
+    return FF_instance;
 }
 
 FF* FF_init(const char* saved_model_dir) {
@@ -123,10 +123,10 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
     TF_DeleteTensor(ff->outputs_values[0]);
     ff->outputs_values[0] = NULL;
 
-    return 0;
+    return FF_OK;
 }
 void FF_close_instance() {
-    if (instance != NULL) FF_destory(instance);
+    if (FF_instance != NULL) FF_destory(FF_instance);
 }
 void FF_destory(FF* ff) {
     if (ff == NULL) return;

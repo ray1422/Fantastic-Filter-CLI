@@ -16,7 +16,7 @@ typedef struct FF {
 } FF;
 
 FF* FF_init();
-extern FF* instance;
+extern FF* FF_instance;
 // TF_SessionOptions* sessionOpts;
 // TF_Buffer* run_opts;
 
@@ -25,4 +25,9 @@ void FF_close_instance();
 void FF_destory(FF* ff);
 
 int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, int* output_width, int* output_height);
+
+typedef enum _ff_status {
+    FF_OK,
+    FF_MODEL_NOT_FOUND,
+} FF_STATUS;
 #endif
