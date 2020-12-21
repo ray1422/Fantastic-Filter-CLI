@@ -17,7 +17,7 @@ typedef struct FF {
 } FF;
 
 FF* FF_init();
-extern FF* FF_instance;
+// extern FF* FF_instance;
 // TF_SessionOptions* sessionOpts;
 // TF_Buffer* run_opts;
 
