@@ -16,7 +16,7 @@ dev: LDFLAGS:=$(LDFLAGS) -lubsan
 dev: ${BIN_DIR}/debug
 
 
-test: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined -fsanitize=leak
+test: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined
 test: LDFLAGS:=$(LDFLAGS) -lubsan
 test: ${BIN_DIR}/test
 	${BIN_DIR}/test
