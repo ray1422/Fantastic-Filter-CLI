@@ -95,7 +95,9 @@ const char *argp_program_bug_address = "<ray1422@csie.io>";
 Args *args_init(int argc, char *argv[]) {
     static char doc[] =
         "Fantastic Filter CLI - A deeplearning based filter for night shot photos.\n"
-        "set environment variable " C_BWHT "FF_MODEL_PATH" C_RESET " to the model's path.";
+        "set environment variable " C_BWHT "FF_MODEL_PATH" C_RESET
+        " to the model's path.\n"
+        "https://ray-fish.me/Fantastic-Filter-Professional-Plus";
     static struct argp_option options[] = {
         {"input_dir", 'i', "DIR", OPTION_HIDDEN, "Input directory. input_files would be ignored if input_dir is set."},
         {"output_dir", 'o', "DIR", 0, "Output directory. Default to current folder."},
