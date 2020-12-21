@@ -14,5 +14,4 @@ static void fn() {
     EXPECT_EQ(EXPECT_HEIGHT, height);
     EXPECT_EQ(EXPECT_WIDTH, width);
     FF_close_instance();
-    free(result);
 }
