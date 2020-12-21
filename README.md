@@ -1,4 +1,4 @@
-# Fantastic Filter CLI [![Build Status](https://travis-ci.com/ray1422/Fantastic-Filter-CLI.svg?branch=master)](https://travis-ci.com/ray1422/Fantastic-Filter-CLI)
+# Fantastic Filter CLI [![Build Status](https://travis-ci.com/ray1422/Fantastic-Filter-CLI.svg?branch=master)](https://travis-ci.com/ray1422/Fantastic-Filter-CLI) [![CodeFactor](https://www.codefactor.io/repository/github/ray1422/fantastic-filter-cli/badge)](https://www.codefactor.io/repository/github/ray1422/fantastic-filter-cli)
 A CLI tool for [Fantastic Filter](https://ray-fish.me/Fantastic-Filter-Professional-Plus) written in C.
 
 ## Usage
