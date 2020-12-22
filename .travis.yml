@@ -12,3 +12,15 @@ before_install:
 
 env:
   - FF_MODEL_PATH=~/FF_Model
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+        - echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t fantastic-filter-cli .
+        - docker images
+        - docker tag fantastic-filter-cli $DOCKER_USERNAME/fantastic-filter-cli:latest
+        - docker push $DOCKER_USERNAME/fantastic-filter-cli:latest
+    - stage: Docker Test
+      script: docker run --rm $DOCKER_USERNAME/fantastic-filter-cli:latest ff-cli -b=0

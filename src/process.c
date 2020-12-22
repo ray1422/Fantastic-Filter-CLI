@@ -12,8 +12,10 @@
 error_t process(uint8_t *data, int height, int width, uint8_t **result, int *output_height, int *output_width) {
     FF *ff = FF_get_instance();
     if (ff == NULL) return PSTAT_NULLPTR;
-    FF_enhance(ff, data, width, height, result, output_height, output_width);
-    return PSTAT_OK;
+    FF_STATUS stat = FF_enhance(ff, data, width, height, result, output_height, output_width);
+    if (stat == FF_OK) return PSTAT_OK;
+    if (stat == FF_OOM) return PSTAT_OOM;
+    return PSTAT_PROCESS_ERROR;
 }
 
 error_t process_file(const char *input_filename, uint8_t **result, int *output_height, int *output_width) {

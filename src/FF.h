@@ -11,7 +11,7 @@ typedef struct FF {
     TF_Output outputs[1];
     TF_Tensor* inputs_values[1];
     TF_Tensor* outputs_values[1];
-    TF_Buffer *run_opts;
+    TF_Buffer* run_opts;
     int height;
     int width;
 } FF;
@@ -30,5 +30,7 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
 typedef enum _ff_status {
     FF_OK,
     FF_MODEL_NOT_FOUND,
+    FF_OOM,
+    FF_ERR_SESSION
 } FF_STATUS;
 #endif

@@ -143,6 +143,10 @@ int main(int argc, char *argv[]) {
             printf(C_BRED " %s" C_RESET "\n", "Failed");
             if (stat == PSTAT_NULLPTR) {
                 puts("error occurred. Is " C_BWHT "FF_MODEL_PATH" C_RESET " set correctly?");
+            } else if (stat == PSTAT_OOM) {
+                puts("OOM! Please buy more high-end graphis cards.");
+            } else {
+                puts("Unknown error! Maybe try to run with --verbose?");
             }
             n_failed++;
         }

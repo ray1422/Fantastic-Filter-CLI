@@ -98,7 +98,7 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
             ff->height = height;
         } else {
             printif(FF_arg.verbose, ERR "Failed TF_NewTensor\n");
-            return 1;
+            return FF_OOM;
         }
     }
 
@@ -110,6 +110,7 @@ int FF_enhance(FF* ff, uint8_t* data, int width, int height, uint8_t** result, i
         printif(FF_arg.verbose, OK "Session is OK\n");
     } else {
         printif(FF_arg.verbose, ERR "%s\n", TF_Message(ff->status));
+        return FF_ERR_SESSION;
     }
 
     void* buf = TF_TensorData(ff->outputs_values[0]);
