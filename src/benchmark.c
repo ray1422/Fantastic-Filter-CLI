@@ -148,7 +148,7 @@ int benchmark(int level) {
     puts("");
     double score = K / time_in_mill * LEVELS[level][0] * LEVELS[level][1];
     printf("Your score:\t" C_GRN "%.2lf" C_RESET " pts (level %d)\n", score, level);
-    return -1;
+    return 0;
 }
 
 int benchmark_main() {
