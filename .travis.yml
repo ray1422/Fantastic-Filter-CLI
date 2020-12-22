@@ -1,13 +1,12 @@
 language: c
-
+compiler:
+  - clang
+  - gcc
 jobs:
   include:
     - stage: Build Sources Code & Test
       env:
         - FF_MODEL_PATH=~/FF_Model
-      compiler:
-        - clang
-        - gcc
       script: make && make test
       before_install:
         - wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-2.3.0.tar.gz -O libtf.tar.gz
