@@ -14,7 +14,7 @@ Note: Level 0 is for testing, which might be TOO stressless for GPU, but enough 
 ```bash
 fantastic-Filter-cli -o <OUT_DIR> [-w=MAX_HEIGHT] [-h=MAX_HEIGHT] <input_files...>
 ```
-MAX_HEIGHT & MAX_WIDTH is depending on how much (V)RAM do you have. e.g. an RTX 2080ti with 11GB VRAM can process the image larger than 3840x2160, but 1920x1080 is too much for an GTX 1050 with 2GB VRAM. Try to reduce the size if you get <span title="Out of Memory">OOM</span> error.
+MAX_HEIGHT & MAX_WIDTH is depending on how much (V)RAM you have. e.g. an RTX 2080ti with 11GB VRAM can process the image larger than 3840x2160, but 1920x1080 is too much for an GTX 1050 with 2GB VRAM. Try to reduce the size if you get <span title="Out of Memory">OOM</span> error.
 ## Pre-requirements
 - `libtensorflow` (tested: `2.3` `2.4`)
 - `gcc` or `clang` (you can change it in `Makefile`)
