@@ -14,7 +14,7 @@ Note: Level 0 is for testing, which might be TOO stressless for GPU, but enough 
 ```bash
 fantastic-Filter-cli -o <OUT_DIR> [-w=MAX_HEIGHT] [-h=MAX_HEIGHT] <input_files...>
 ```
-MAX_HEIGHT & MAX_WIDTH is depending on how much (V)RAM you have. e.g. An RTX 2080ti with 11GB VRAM can process the image larger than 3840x2160, but 1920x1080 is too much for an GTX 1050 with 2GB VRAM. Try to reduce the size if you get <span title="Out of Memory">OOM</span> error.
+MAX_HEIGHT & MAX_WIDTH depends on how much (V)RAM you have. For example, an RTX 2080ti with 11GB VRAM can process images larger than 3840x2160, but 1920x1080 is too much for a GTX 1050 with 2GB VRAM. Try to reduce the size if you get <span title="Out of Memory">OOM</span> error.
 ## Pre-requirements
 - `libtensorflow` (tested: `2.3` `2.4`)
 - `gcc` or `clang` (you can change it in `Makefile`)
@@ -27,13 +27,13 @@ MAX_HEIGHT & MAX_WIDTH is depending on how much (V)RAM you have. e.g. An RTX 208
 ```bash
 make
 ```
-After `make`, `./bin/fantastic-filter-cli` will be created, move it to somewhere if you want.
+After `make`, `./bin/fantastic-filter-cli` will be generated. Move it to somewhere if you want.
 
-Download `FF_Model.tar.gz` from releases, extract, and set enviorment variable `FF_MODEL_PATH` to the direcrory.
+Download `FF_Model.tar.gz` from releases, extract it, and set the environment variable `FF_MODEL_PATH` to the directory.
 
 ## Docker
 
-The basic idea is mount the directory that where the image you want to process to docker.
+The basic idea is to mount the directory where the image you want to process to docker.
 
 Here's an example:
 ```bash
@@ -41,4 +41,4 @@ docker run --gpus all -v <dir_on_host>:/myDir -it <image_name> fantastic-filter-
 ```
 
 # TODO
-Build app image.
+Build an app image.
