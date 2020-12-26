@@ -12,7 +12,7 @@ RUN rm ./* -rf && \
     git clone https://github.com/ray1422/Fantastic-Filter-CLI.git ./ && \
     git checkout master
 
-RUN wget https://github.com/ray1422/Fantastic-Filter-CLI/releases/download/v0.0.1-alpha/libtensorflow.tar.gz -O tf.tar.gz -q && \
+RUN wget https://github.com/ray1422/Fantastic-Filter-CLI/releases/download/v0.0.1-alpha/libtensorflow_cu10-1.tar.gz -O tf.tar.gz -q && \
     tar -C /usr/local -xzf tf.tar.gz && \
     ldconfig
 # RUN wget https://storage.googleapis.com/tensorflow-nightly/github/tensorflow/lib_package/libtensorflow-gpu-linux-x86_64.tar.gz -O tf.tar.gz -q && \
