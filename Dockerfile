@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 WORKDIR /fantastic-filter-cli
 ENV TF_CPP_MIN_LOG_LEVEL 3
 ENV FF_MODEL_PATH /fantastic-filter-cli/FF_Model
