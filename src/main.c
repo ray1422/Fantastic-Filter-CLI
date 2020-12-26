@@ -100,7 +100,12 @@ int main(int argc, char *argv[]) {
     qsort(images, n_images, sizeof(images[0]), img_cmp);
 
     // start processing.
-    printf("There are " C_BWHT "%d" C_RESET " images need to be processed.\n", n_images);
+    if (n_images == 1) {
+        printf("There is " C_BWHT "%d" C_RESET " image need to be processed.\n", n_images);
+    } else {
+        printf("There are " C_BWHT "%d" C_RESET " images need to be processed.\n", n_images);
+    }
+
     for (int i = 0; i < n_images; i++) {
         struct winsize w;
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
