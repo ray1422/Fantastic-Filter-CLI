@@ -1,10 +1,10 @@
-#include "vector.h"
+#include "utils/vector.h"
 
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "debug.h"
+#include "utils/debug.h"
 
 Vector _vector_new(size_t base) {
     DEBUG("new vector!");

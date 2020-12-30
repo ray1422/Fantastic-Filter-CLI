@@ -1,4 +1,4 @@
-#include "jpg_info.h"
+#include "utils/jpg_info.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
