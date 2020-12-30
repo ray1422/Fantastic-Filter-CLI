@@ -3,8 +3,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "../src/utils/color.h"
-#include "../src/utils/vector.h"
+#include "utils/color.h"
+#include "utils/vector.h"
 extern int test_n_passed;
 extern int test_n_failed;
 extern Vector tests;

@@ -3,7 +3,7 @@ CC?=gcc
 BIN_DIR=${PWD}/bin
 O_DIR=${BIN_DIR}
 
-CFLAGS=-O2 -std=gnu11
+CFLAGS=-O2 -std=gnu11 -I ./include
 LDFLAGS=-lm -pthread -ltensorflow -L${BIN_DIR} -lutils -lm
 
 .PHONY: default
@@ -20,13 +20,13 @@ test: CFLAGS:=$(CFLAGS) -g -fsanitize=undefined
 test: LDFLAGS:=$(LDFLAGS) -lubsan
 test: ${BIN_DIR}/test
 	${BIN_DIR}/test
-${BIN_DIR}/test: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c src/process.h test/*.c
+${BIN_DIR}/test: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c test/*.c
 	${CC} test/*.c src/benchmark.c src/process.c ${BIN_DIR}/FF.o ${BIN_DIR}/args.o  -o ${BIN_DIR}/test  ${CFLAGS} ${LDFLAGS}
 
-${BIN_DIR}/fantastic-filter-cli: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c src/process.h src/benchmark.c src/benchmark.h
+${BIN_DIR}/fantastic-filter-cli: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c src/benchmark.c
 	${CC} src/main.c src/benchmark.c src/process.c ${BIN_DIR}/FF.o ${BIN_DIR}/args.o  -o ${BIN_DIR}/fantastic-filter-cli  ${CFLAGS} ${LDFLAGS}
 
-${BIN_DIR}/debug: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c src/process.h src/benchmark.c src/benchmark.h
+${BIN_DIR}/debug: ${BIN_DIR}/FF.o ${BIN_DIR}/args.o utils src/main.c src/process.c  src/benchmark.c
 	${CC} src/main.c src/benchmark.c src/process.c ${BIN_DIR}/FF.o ${BIN_DIR}/args.o  -o ${BIN_DIR}/debug  ${CFLAGS} ${LDFLAGS}
 	
 

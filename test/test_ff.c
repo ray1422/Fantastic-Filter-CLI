@@ -1,7 +1,7 @@
 #include <assert.h>
 
-#include "../src/FF.h"
-#include "test.h"
+#include "../include/FF.h"
+#include "./test.h"
 static void fn(void) __attribute__((constructor));
 static void fn() {
     EXPECT_NOT_EQ(FF_get_instance(), NULL);
