@@ -53,6 +53,6 @@ ${O_DIR}/utils/%.o: src/utils/%.c
 	$(CC) -c -o $@ $< ${CFLAGS}
 
 
-${BIN_DIR}/libutils.a: ${O_DIR}/utils/vector.o ${O_DIR}/utils/jpg_info.o ${O_DIR}/utils/color.o
-	ar rcs ${BIN_DIR}/libutils.a ${O_DIR}/utils/vector.o ${O_DIR}/utils/jpg_info.o ${O_DIR}/utils/color.o
+${BIN_DIR}/libutils.a: ${O_DIR}/utils/vector.o ${O_DIR}/utils/jpg_info.o
+	ar rcs ${BIN_DIR}/libutils.a ${O_DIR}/utils/vector.o ${O_DIR}/utils/jpg_info.o
 
